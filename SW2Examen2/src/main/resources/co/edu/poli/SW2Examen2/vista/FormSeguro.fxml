@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- El controlador (ControlFormSeguro) se asigna desde App con loader.setController(...),
+     porque necesita recibir los casos de uso por constructor. -->
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+   <top>
+      <HBox alignment="CENTER_LEFT">
+         <padding>
+            <Insets top="15.0" right="15.0" left="15.0" />
+         </padding>
+         <Label text="Gestión de Seguros" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      </HBox>
+   </top>
+
+   <left>
+      <VBox minWidth="-Infinity" prefWidth="400.0">
+         <GridPane hgap="10.0" vgap="10.0">
+            <padding>
+               <Insets top="15.0" right="15.0" bottom="15.0" left="15.0" />
+            </padding>
+            <columnConstraints>
+               <ColumnConstraints minWidth="130.0" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label text="Tipo de seguro:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <ComboBox fx:id="cmbTipo" maxWidth="Infinity" promptText="Seleccione el tipo"
+                      onAction="#onTipoSeleccionado" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Número:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <TextField fx:id="txtNumero" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Fecha de expedición:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <TextField fx:id="txtFecha" promptText="yyyy-MM-dd" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <Label text="Valor:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <TextField fx:id="txtValor" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+            <Label text="Estado:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+            <CheckBox fx:id="chkEstado" text="Activo" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+            <Label text="Asegurado:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+            <ComboBox fx:id="cmbAsegurado" maxWidth="Infinity" promptText="Seleccione el asegurado"
+                      GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+            <Label fx:id="lblBeneficiario" text="Beneficiario:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+            <TextField fx:id="txtBeneficiario" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+
+            <Label fx:id="lblParentesco" text="Parentesco:" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+            <TextField fx:id="txtParentesco" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+
+            <Label fx:id="lblMarca" text="Marca:" GridPane.rowIndex="8" GridPane.columnIndex="0" />
+            <TextField fx:id="txtMarca" GridPane.rowIndex="8" GridPane.columnIndex="1" />
+         </GridPane>
+
+         <!-- FlowPane: si los botones no caben en una fila, pasan a la siguiente
+              en lugar de truncar el texto con "...". -->
+         <FlowPane hgap="8.0" vgap="8.0" prefWrapLength="370.0">
+            <padding>
+               <Insets right="15.0" bottom="15.0" left="15.0" />
+            </padding>
+            <Button text="Crear" onAction="#onCrear" minWidth="-Infinity" prefWidth="80.0" />
+            <Button text="Actualizar" onAction="#onActualizar" minWidth="-Infinity" prefWidth="90.0" />
+            <Button text="Eliminar" onAction="#onEliminar" minWidth="-Infinity" prefWidth="80.0" />
+            <Button text="Limpiar" onAction="#onLimpiar" minWidth="-Infinity" prefWidth="80.0" />
+            <Button text="Consultar por número" onAction="#onConsultar" minWidth="-Infinity" prefWidth="180.0" />
+         </FlowPane>
+      </VBox>
+   </left>
+
+   <center>
+      <TableView fx:id="tabla">
+         <BorderPane.margin>
+            <Insets top="15.0" right="15.0" bottom="15.0" left="15.0" />
+         </BorderPane.margin>
+         <columns>
+            <TableColumn fx:id="colNumero" text="Número" prefWidth="70.0" />
+            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="80.0" />
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="95.0" />
+            <TableColumn fx:id="colValor" text="Valor" prefWidth="100.0" />
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="75.0" />
+            <TableColumn fx:id="colAsegurado" text="Asegurado" prefWidth="150.0" />
+            <TableColumn fx:id="colDetalle" text="Detalle" prefWidth="180.0" />
+         </columns>
+      </TableView>
+   </center>
+
+</BorderPane>
